@@ -116,8 +116,8 @@
 		this.totalWidth = this.width * this.length + this.distance; //总宽度
 
 		this.duration = opts.duration || 400;
-		this.easing = (opts.easing && tween[opts.easing]) || tween.linear,
-			this.auto = opts.auto || false;
+		this.easing = (opts.easing && tween[opts.easing]) || tween.linear;
+		this.auto = opts.auto || false;
 		this.auto && (this.delay = opts.delay || 5000);
 
 		this._init();
