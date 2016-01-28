@@ -108,7 +108,7 @@
 
 		this.count = opts.count || 1; //滚动几个
 		this.width = opts.width || parseInt(this.elements[0].offsetWidth); //单个的宽度
-		this.amount = opts.amount || Math.floor(this.wrapper.offsetWidht / this.width); //显示区域能显示几个
+		this.amount = opts.amount || Math.floor(this.wrapper.offsetWidth / this.width); //显示区域显示几个
 		if (this.amount > this.length) this.amount = this.length;
 		if (this.count > this.amount) this.count = this.amount;
 
