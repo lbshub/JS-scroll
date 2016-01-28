@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>左右滚动 复制删除节点方式 图片延迟加载</title>
+
+	<style>
+		*{margin: 0; padding: 0;}
+		ul, li{list-style: none;}
+		a{outline: none; text-decoration: none;}
+		a img{border: none;}
+		body{font-family: Arial;}
+		
+		.wrapper{position: relative; width: 1000px; height: 200px; margin: 50px auto; border: 1px solid #c4c4c4; overflow: hidden;}
+		.wrapper ul{position: absolute;}
+		.wrapper li{float: left; width: 180px; height: 180px; padding: 10px; position: relative; }
+		.wrapper li img{vertical-align: top; width: 180px; height: 180px;}
+		.wrapper li span{position: absolute; left: 10px; top:10px; display: block; width: 180px; height: 180px; line-height: 180px; text-align: center; font-size: 100px; color:#fff; font-weight: bold;}
+		.btn{ display: block; width: 30px; height: 200px; line-height: 200px; position: absolute; top: 0; z-index: 5; background: #000; background: rgba(0,0,0,.3);  color: #fff; text-align: center; font-size: 30px; opacity: 0; filter: alpha(opacity=0);}
+		.btn:hover{opacity: 1; filter:alpha(opacity=30);}
+		.left{left: 0;}
+		.right{right: 0;}
+	</style>
+
+</head>
+<body>
+
+	<div class="wrapper" id="wrapper">
+		<ul>
+			<li><span>1</span><a href="#01"><img src="images/blank.gif" _src="images/21.jpg" /></a></li>
+			<li><span>2</span><a href="#02"><img src="images/blank.gif" _src="images/22.jpg" /></a></li>
+			<li><span>3</span><a href="#03"><img src="images/blank.gif" _src="images/23.jpg" /></a></li>
+			<li><span>4</span><a href="#04"><img src="images/blank.gif" _src="images/24.jpg" /></a></li>
+			<li><span>5</span><a href="#05"><img src="images/blank.gif" _src="images/25.jpg" /></a></li>
+			<li><span>6</span><a href="#06"><img src="images/blank.gif" _src="images/26.jpg" /></a></li>
+			<li><span>7</span><a href="#07"><img src="images/blank.gif" _src="images/27.jpg" /></a></li>
+			<li><span>8</span><a href="#08"><img src="images/blank.gif" _src="images/28.jpg" /></a></li>
+			<li><span>9</span><a href="#09"><img src="images/blank.gif" _src="images/29.jpg" /></a></li>
+			<li><span>10</span><a href="#10"><img src="images/blank.gif" _src="images/30.jpg" /></a></li>
+		</ul>
+		<a href="javascript:;" class="btn left" id="leftBtn">&lt;</a>
+		<a href="javascript:;" class="btn right" id="rightBtn">&gt;</a>
+	</div>
+
+	<div class="wrapper" id="wrapper2">
+		<ul>
+			<li><span>1</span><a href="#01"><img src="images/blank.gif" data-src="images/01.jpg" /></a></li>
+			<li><span>2</span><a href="#02"><img src="images/blank.gif" data-src="images/02.jpg" /></a></li>
+			<li><span>3</span><a href="#03"><img src="images/blank.gif" data-src="images/03.jpg" /></a></li>
+			<li><span>4</span><a href="#04"><img src="images/blank.gif" data-src="images/04.jpg" /></a></li>
+			<li><span>5</span><a href="#05"><img src="images/blank.gif" data-src="images/05.jpg" /></a></li>
+			<li><span>6</span><a href="#06"><img src="images/blank.gif" data-src="images/06.jpg" /></a></li>
+			<li><span>7</span><a href="#07"><img src="images/blank.gif" data-src="images/07.jpg" /></a></li>
+			<li><span>8</span><a href="#08"><img src="images/blank.gif" data-src="images/08.jpg" /></a></li>
+			<li><span>9</span><a href="#09"><img src="images/blank.gif" data-src="images/09.jpg" /></a></li>
+			<li><span>10</span><a href="#10"><img src="images/blank.gif" data-src="images/10.jpg" /></a></li>
+			<li><span>11</span><a href="#11"><img src="images/blank.gif" data-src="images/11.jpg" /></a></li>
+			<li><span>12</span><a href="#12"><img src="images/blank.gif" data-src="images/12.jpg" /></a></li>
+			<li><span>13</span><a href="#13"><img src="images/blank.gif" data-src="images/13.jpg" /></a></li>
+			<li><span>14</span><a href="#14"><img src="images/blank.gif" data-src="images/14.jpg" /></a></li>
+			<li><span>15</span><a href="#15"><img src="images/blank.gif" data-src="images/15.jpg" /></a></li>
+		</ul>
+		<a href="javascript:;" class="btn left" id="leftBtn2">&lt;</a>
+		<a href="javascript:;" class="btn right" id="rightBtn2">&gt;</a>
+	</div>
+
+	<script type="text/javascript" src="scroll-load.js"></script>
+	<script type="text/javascript">
+		var leftBtn = document.getElementById('leftBtn'),
+			rightBtn = document.getElementById('rightBtn'),
+			myScroll = new Scroll({
+				el: 'wrapper',
+				count: 2, //每次滚动几个
+				auto: true,
+				delay: 3000,
+				lazyLoad: true,
+				duration: 500,
+				easing: 'swing'
+			});
+		leftBtn.onclick = function() {
+			myScroll.scrollLeft();
+		};
+		rightBtn.onclick = function() {
+			myScroll.scrollRight();
+		};
+
+		var leftBtn2 = document.getElementById('leftBtn2'),
+			rightBtn2 = document.getElementById('rightBtn2'),
+			wrapper2 = document.getElementById('wrapper2'),
+			myScroll2 = new Scroll({
+				el: wrapper2,
+				count: 4, //每次滚动几个
+				lazyLoad: true,
+				attribute: 'data-src',
+				duration: 600,
+				easing: 'easeInOut'
+			});
+		leftBtn2.onclick = function() {
+			myScroll2.scrollLeft();
+		};
+		rightBtn2.onclick = function() {
+			myScroll2.scrollRight();
+		};
+	</script>
+
+</body>
+</html>
