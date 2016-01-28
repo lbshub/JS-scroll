@@ -129,9 +129,9 @@
 			this._bind();
 		},
 		_initSet: function() {
+			this.scroller.style.left = 0;
 			this.scroller.innerHTML += this.scroller.innerHTML; //复制
 			this.scroller.style.width = 2 * this.totalWidth + 'px';
-			this.scroller.style.left = 0;
 		},
 		_bind: function() {
 			var _this = this;
